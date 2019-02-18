@@ -1,0 +1,15 @@
+[
+  {
+    "name": "example-instance",
+    "image": "${repo_url}:${task_version}",
+    "cpu": 1,
+    "memory": 256,
+    "essential": true,
+    "portMappings": [
+      {
+        "containerPort": 80,
+        "hostPort": 80
+      }
+    ]
+  }
+]
