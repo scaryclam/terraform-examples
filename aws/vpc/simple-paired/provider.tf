@@ -8,8 +8,8 @@ provider "aws" {
 # Optional: remote state. Just comment this out to use a local state
 terraform {
     backend "s3" {
-        bucket = "example-tf-states-sand"
-        key = "example-environment-1.tfstate"
+        bucket = "test-tf-states"
+        key = "example-environment-2.tfstate"
         region = "eu-west-1"
         shared_credentials_file = "/path/to/.aws/credentials"
     }
