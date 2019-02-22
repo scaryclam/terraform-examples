@@ -1,4 +1,4 @@
-# Create VPC for application environment
+### Create VPCs
 resource "aws_vpc" "example-vpc-1" {
     cidr_block = "172.16.1.0/24"
     enable_dns_hostnames = true
@@ -19,7 +19,8 @@ resource "aws_vpc" "example-vpc-2" {
     }
 }
 
-# This is the peering stuff
+### This is the peering stuff
+
 # GOTCHA ALERT! With the auto_accept value set to false, or not including it at all,
 # you will need to MANUALLY accept the connection in the AWS console!
 # If the requester and accepter are not the same owner, this will need to be done!
@@ -35,6 +36,19 @@ resource "aws_vpc_peering_connection" "example-peer" {
     auto_accept = true
 }
 
+# If you want full automation on both sides, set the above resource's auto_accept to false and
+# use another resource (see below) to set the other side to auto_accept = true
+
+# Example Accepter's side of the connection.
+#resource "aws_vpc_peering_connection_accepter" "peer" {
+#  provider = "aws.peer"
+#  vpc_peering_connection_id = "${aws_vpc_peering_connection.peer.id}"
+#  auto_accept = true
+#
+#  tags = {
+#    Side = "Accepter"
+#  }
+#}
 
 # If you want things in the VPCs to be able to talk to each other (and you probably do)...
 # ...and yes, you need both
@@ -52,7 +66,7 @@ resource "aws_route" "vpc2-to-vpc1" {
 
 
 
-# OPTIONAL THINGS:
+### OPTIONAL THINGS:
 # I've mainly used these to test and verify things are working as expected
 # Create an internet gateway to give our subnet access to the outside world
 resource "aws_internet_gateway" "example-1" {
