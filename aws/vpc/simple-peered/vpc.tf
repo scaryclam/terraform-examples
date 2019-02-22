@@ -30,7 +30,8 @@ resource "aws_vpc_peering_connection" "example-peer" {
     peer_owner_id = "${var.account_owner_id}"
     peer_vpc_id = "${aws_vpc.example-vpc-1.id}"
     vpc_id = "${aws_vpc.example-vpc-2.id}"
-    peer_region = "eu-west-1"
+    # Cannot use this if we have auto_accept set to true
+    #peer_region = "eu-west-1"
     auto_accept = true
 }
 
