@@ -21,7 +21,7 @@ resource "aws_launch_configuration" "eks-example-launch-conf" {
 resource "aws_autoscaling_group" "eks-example-asg" {
   name = "eks-example-asg"
   launch_configuration = "${aws_launch_configuration.eks-example-launch-conf.name}"
-  vpc_zone_identifier = ["${aws_vpc.example.id}"]
+  vpc_zone_identifier = ["${aws_subnet.eks-example-eu-west-1a.id}", "${aws_subnet.eks-example-eu-west-1b.id}"]
   min_size = 1
   max_size = 2
   desired_capacity = 1
