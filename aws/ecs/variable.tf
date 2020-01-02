@@ -17,3 +17,9 @@ variable "key_file_path" {
 variable "security_group_vpc_id" {
   description = "VPC ID"
 }
+
+variable "profile" {
+  description = "AWS Profile to use"
+  default = "default"
+}
+
