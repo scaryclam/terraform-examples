@@ -1,14 +1,14 @@
 resource "aws_security_group" "eks_cluster_control_plane_sg" {
-    name = "eks-example-control-plane-sg-${var.env_name}"
+    name = "eks-example-control-plane-sg-example"
     description = "Security Group for the control plane"
-    vpc_id = "${aws_vpc.example.id}"
+    vpc_id = aws_vpc.example.id
 }
 
 
 resource "aws_security_group" "eks-example-node-sg" {
-    name = "eks-example-sg-${var.env_name}"
+    name = "eks-example-sg-example"
     description = "Security Group for the nodes"
-    vpc_id = "${aws_vpc.example.id}"
+    vpc_id = aws_vpc.example.id
 
     ingress {
         from_port = 22
@@ -28,14 +28,14 @@ resource "aws_security_group" "eks-example-node-sg" {
         from_port = 1025
         to_port = 65535
         protocol = "tcp"
-        security_groups = ["${aws_security_group.eks_cluster_control_plane_sg.id}"]
+        security_groups = [aws_security_group.eks_cluster_control_plane_sg.id]
     }
 
     ingress {
         from_port = 443
         to_port = 443
         protocol = "tcp"
-        security_groups = ["${aws_security_group.eks_cluster_control_plane_sg.id}"]
+        security_groups = [aws_security_group.eks_cluster_control_plane_sg.id]
     }
 
     egress {
@@ -53,8 +53,8 @@ resource "aws_security_group_rule" "eks-node-to-control" {
   from_port = 1025
   to_port = 65535
   protocol = "tcp"
-  source_security_group_id = "${aws_security_group.eks-example-node-sg.id}"
-  security_group_id = "${aws_security_group.eks_cluster_control_plane_sg.id}"
+  source_security_group_id = aws_security_group.eks-example-node-sg.id
+  security_group_id = aws_security_group.eks_cluster_control_plane_sg.id
 }
 
 resource "aws_security_group_rule" "eks-control-to-node-https" {
@@ -62,8 +62,8 @@ resource "aws_security_group_rule" "eks-control-to-node-https" {
   from_port = 443
   to_port = 443
   protocol = "tcp"
-  source_security_group_id = "${aws_security_group.eks-example-node-sg.id}"
-  security_group_id = "${aws_security_group.eks_cluster_control_plane_sg.id}"
+  source_security_group_id = aws_security_group.eks-example-node-sg.id
+  security_group_id = aws_security_group.eks_cluster_control_plane_sg.id
 }
 
 resource "aws_security_group_rule" "eks-node-to-control-https" {
@@ -71,7 +71,7 @@ resource "aws_security_group_rule" "eks-node-to-control-https" {
   from_port = 443
   to_port = 443
   protocol = "tcp"
-  source_security_group_id = "${aws_security_group.eks-example-node-sg.id}"
-  security_group_id = "${aws_security_group.eks_cluster_control_plane_sg.id}"
+  source_security_group_id = aws_security_group.eks-example-node-sg.id
+  security_group_id = aws_security_group.eks_cluster_control_plane_sg.id
 }
 

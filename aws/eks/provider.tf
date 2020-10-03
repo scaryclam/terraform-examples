@@ -7,8 +7,8 @@ provider "aws" {
 
 terraform {
     backend "s3" {
-        bucket = "example-tf-states-sand"
-        key = "example-environment-eks-1.tfstate"
+        bucket = "sample-tf-states"
+        key = "eks.tfstate"
         region = "eu-west-1"
         shared_credentials_file = "~/.aws/credentials"
     }
