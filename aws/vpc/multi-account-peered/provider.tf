@@ -1,21 +1,29 @@
+# This is the provider for the source account
 provider "aws" {
-    profile = "source-profile"
+    profile = "default"
     region = "eu-west-1"
     shared_credentials_file = "~/.aws/credentials"
 }
 
+# This is the provider for the target account
 provider "aws" {
-    profile = "target-profile"
-    region = "eu-west-1"
-    shared_credentials_file = "~/.aws/credentials"
+  alias = "target"
+  region = "eu-west-1"
+  shared_credentials_file = "~/.aws/credentials"
+  profile = "default-target"
+}
+
+# This will give access to the target account ID
+data "aws_caller_identity" "target-account" {
+  provider = aws.target
 }
 
 
 # Optional: remote state. Just comment this out to use a local state
 terraform {
     backend "s3" {
-        bucket = "test-tf-states"
-        key = "example-environment-3.tfstate"
+        bucket = "sample-tf-states"
+        key = "multip-account-peered.tfstate"
         region = "eu-west-1"
         shared_credentials_file = "~/.aws/credentials"
     }

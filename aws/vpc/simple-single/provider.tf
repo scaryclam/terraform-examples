@@ -1,5 +1,5 @@
 provider "aws" {
-    profile = "default-1"
+    profile = "default"
     region = "eu-west-1"
     shared_credentials_file = "~/.aws/credentials"
 }
@@ -8,8 +8,8 @@ provider "aws" {
 # Optional: remote state. Just comment this out to use a local state
 terraform {
     backend "s3" {
-        bucket = "example-tf-states-sand"
-        key = "example-environment-1.tfstate"
+        bucket = "sample-tf-states"
+        key = "simple-vpc-single.tfstate"
         region = "eu-west-1"
         shared_credentials_file = "~/.aws/credentials"
     }
