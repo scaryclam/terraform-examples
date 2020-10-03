@@ -1,7 +1,7 @@
 provider "aws" {
-    profile = "default"
+    profile = "default-1"
     region = "eu-west-1"
-    shared_credentials_file = "/path/to/.aws/credentials"
+    shared_credentials_file = "~/.aws/credentials"
 }
 
 
@@ -11,6 +11,6 @@ terraform {
         bucket = "example-tf-states-sand"
         key = "example-environment-1.tfstate"
         region = "eu-west-1"
-        shared_credentials_file = "/path/to/.aws/credentials"
+        shared_credentials_file = "~/.aws/credentials"
     }
 }
