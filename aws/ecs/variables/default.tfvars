@@ -1,3 +1,3 @@
-state_bucket = "example-tf-states-sand"
-vpc_subnet_id = "your-vpc-subnet-id"
-security_group_vpc_id = "your-sg-vpc-id"
+vpc_subnet_id = "subnet-74c61202"
+security_group_vpc_id = "vpc-d46aafb0"
+key_file_path = "~/.ssh/spigot.pub"
