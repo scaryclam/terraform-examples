@@ -11,6 +11,8 @@ Each example should either be:
 Examples can contain more than required for the exact topic, but additional resources should have comments to show that they are not required
 Examples should **NOT** use modules or shortcuts unless the purpose of the example is to demonstrate modules or shortcuts!
 
+**NOTE** : these are all examples. As such, the resulting resources may not be properly secured or configured! If using any examples as a basis for real work, please make sure you understand and impliment security and additional configuration for them!
+
 ## Contributing
 
 Contributions are welcome, but please stay within the spirit of the repository. All examples should be tested and working. If any other steps beyond 'terraform init' and 'terraform apply' are required, then the steps should be fully documented so a beginner can follow them. If too many steps are required, or other scripts need to be run, then please be aware that the contribution may be rejected.
